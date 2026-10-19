@@ -4,8 +4,8 @@ compatibility_date = "2026-10-19"
 
 [[d1_databases]]
 binding = "DB"
-database_name = "toko-foto-db"
-database_id = "GANTI_DENGAN_DATABASE_ID"
+database_name = "sdestorev1"
+database_id = "c65c3852-e958-44dc-aab8-1e18d21a23e3"
 
 [vars]
 STORE_NAME = "TOKO FOTO"
