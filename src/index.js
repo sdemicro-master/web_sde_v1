@@ -132,6 +132,20 @@ footer{background:linear-gradient(135deg,#062e2c,#0b4540)}
 @media(max-width:640px){.nav{height:auto}.hero-panel{grid-template-columns:1fr;border-radius:20px}.hero-copy{padding:32px 24px 27px}h1{font-size:clamp(36px,10vw,48px);line-height:1.04;margin:18px 0 14px}.hero-copy p{font-size:13px;line-height:1.7}.hero-visual{min-height:250px}.hero-visual img{object-position:right center}.hero-chip{left:12px;bottom:12px}.hero-sale{width:82px;height:82px;right:5%;top:7%}.hero-sale strong{font-size:27px}.benefits{border-radius:14px}}
 @media(prefers-reduced-motion:reduce){.hero-copy,.hero-visual img,.product,.category,.benefits,.promo{animation:none!important}}
 
+
+/* Version 5.2 — wider, landscape hero */
+.hero{padding-top:24px;padding-bottom:18px}
+.hero-panel{grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);min-height:360px;height:clamp(360px,31vw,430px);align-items:stretch;border-radius:22px}
+.hero-copy{padding:38px 24px 36px 42px;display:flex;flex-direction:column;justify-content:center;min-width:0}
+h1{font-size:clamp(34px,3.35vw,47px);line-height:1.04;letter-spacing:-.055em;max-width:500px;margin:17px 0 15px;overflow-wrap:normal}
+.hero-copy p{font-size:14px;line-height:1.72;max-width:390px;margin-bottom:22px}
+.hero-visual{height:100%;min-height:360px;align-self:stretch}
+.hero-visual img{height:100%;min-height:0;object-fit:cover;object-position:center;animation:heroImageDrift 20s ease-in-out infinite alternate}
+.hero-chip{bottom:20px;left:20px}
+@media(min-width:1200px){.hero-panel{height:410px}.hero-copy{padding-left:48px}h1{font-size:48px}}
+@media(max-width:900px) and (min-width:641px){.hero-panel{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);height:370px}.hero-copy{padding:28px 18px 28px 28px}h1{font-size:clamp(32px,4vw,40px)}.hero-visual{min-height:370px}}
+@media(max-width:640px){.hero-panel{height:auto;min-height:0;grid-template-columns:1fr}.hero-copy{padding:30px 24px 26px}h1{font-size:clamp(35px,9vw,44px);line-height:1.03}.hero-visual{height:260px;min-height:260px}.hero-visual img{height:100%;min-height:0;object-position:center}.hero-chip{left:12px;bottom:12px}}
+
 </style></head><body>
 <div class="announcement"><span>♧ &nbsp; Gratis ongkir untuk pembelian tertentu</span><span>◇ &nbsp; Katalog produk pilihan</span><span>◌ &nbsp; Foto produk diperbarui berkala</span></div>
 <header><div class="wrap nav">
@@ -142,7 +156,7 @@ footer{background:linear-gradient(135deg,#062e2c,#0b4540)}
 <main>
 <section class="hero wrap" id="beranda"><div class="hero-panel">
 <div class="hero-copy"><div class="eyebrow">Pilihan cerdas, hidup lebih baik</div><h1>Teknologi Cerdas.<br><span>Ruang Lebih Nyaman.</span></h1><p>Jelajahi perangkat monitoring, lampu dekoratif, perlengkapan kerja, dan alat kreatif pilihan untuk rumah maupun workspace Anda.</p><div class="hero-actions"><a class="btn btn-dark" href="#produk">JELAJAHI PRODUK&nbsp; →</a><a class="btn btn-ghost" href="#kategori">Lihat kategori</a></div></div>
-<div class="hero-visual"><img src="/hero-monitoring-dekorasi.png" alt="Perangkat monitoring, lampu dekoratif, perlengkapan kerja, dan dekorasi rumah"><div class="hero-chip">Koleksi pilihan<span>Temukan produk favorit Anda ↗</span></div><div class="hero-sale">DISKON PILIHAN<strong>50%</strong><small>Untuk koleksi tertentu</small></div></div>
+<div class="hero-visual"><img src="/hero-monitoring-dekorasi.jpg" alt="Perangkat monitoring, lampu dekoratif, perlengkapan kerja, dan dekorasi rumah"><div class="hero-chip">Koleksi pilihan<span>Temukan produk favorit Anda ↗</span></div><div class="hero-sale">DISKON PILIHAN<strong>50%</strong><small>Untuk koleksi tertentu</small></div></div>
 </div>
 <div class="benefits"><div class="benefit"><span class="benefit-icon">▣</span><span>Foto Produk Jelas<small>Lihat detail produk</small></span></div><div class="benefit"><span class="benefit-icon">♡</span><span>Koleksi Pilihan<small>Kurasi dengan cermat</small></span></div><div class="benefit"><span class="benefit-icon">↻</span><span>Update Berkala<small>Produk terbaru</small></span></div><div class="benefit"><span class="benefit-icon">⌕</span><span>Mudah Dicari<small>Filter per kategori</small></span></div></div>
 <div class="promo"><div class="promo-tag">✦</div><div><small>Temukan sesuatu yang spesial</small><strong>Gaya pilihan. Setiap hari.</strong><p>Jelajahi produk terbaru di katalog kami.</p></div><a class="promo-code" href="#produk"><small>LIHAT KOLEKSI</small><b>JELAJAHI ↗</b></a></div>
@@ -205,7 +219,15 @@ loadProducts();
 export default {
  async fetch(request, env) {
   const url=new URL(request.url), path=url.pathname, method=request.method;
-  if(path==="/hero-monitoring-dekorasi.png" && env.ASSETS) return env.ASSETS.fetch(request);
+  if(path==="/hero-monitoring-dekorasi.jpg" && env.ASSETS) {
+   const assetResponse = await env.ASSETS.fetch(request);
+   if (assetResponse.ok) {
+    const headers = new Headers(assetResponse.headers);
+    headers.set("cache-control","public, max-age=86400");
+    headers.set("content-type","image/jpeg");
+    return new Response(assetResponse.body,{status:assetResponse.status,headers});
+   }
+  }
   if(path==="/"&&method==="GET")return new Response(page(env.STORE_NAME),{headers:{"content-type":"text/html; charset=utf-8","x-content-type-options":"nosniff"}});
   if(path==="/api/session"&&method==="GET")return json({authenticated:await validSession(request,env)});
   if(path==="/api/login"&&method==="POST"){
