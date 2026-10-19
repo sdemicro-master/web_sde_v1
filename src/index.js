@@ -47,6 +47,7 @@ return `<!doctype html>
 <title>${title} — Pilihan Produk</title>
 <link rel="preconnect" href="https://images.unsplash.com">
 <style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
 :root{--teal:#0b3d3b;--teal2:#164f49;--orange:#bd5121;--paper:#faf8f4;--ink:#17211e;--muted:#65716c;--line:#e7e4dd;--white:#fff}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
 button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}.wrap{width:min(1160px,calc(100% - 40px));margin:auto}
@@ -80,6 +81,57 @@ dialog{border:0;border-radius:14px;padding:0;width:min(540px,calc(100% - 24px));
 @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}@keyframes slowzoom{from{transform:scale(1)}to{transform:scale(1.07)}}@keyframes floatbadge{0%,100%{transform:translateY(0) rotate(7deg)}50%{transform:translateY(-7px) rotate(3deg)}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 @media(max-width:900px){.navlinks{gap:13px}.searchbox input{width:90px}.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.category-grid{grid-template-columns:repeat(4,1fr)}.hero-copy{padding-left:30px}.benefits{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:640px){.announcement{justify-content:center;gap:8px;font-size:9px;padding:8px}.announcement span:nth-child(2){display:none}.wrap{width:calc(100% - 24px)}.nav{height:auto;min-height:66px;flex-wrap:wrap;padding:12px 0;gap:12px}.navlinks{order:3;width:100%;justify-content:space-between;gap:6px;font-size:11px}.navright{margin-left:auto}.searchbox{display:none}.brand{font-size:17px}.hero{padding-top:14px}.hero-panel{grid-template-columns:1fr}.hero-copy{padding:30px 24px 15px}.hero-copy p{font-size:12px}.hero-visual{min-height:215px}.hero-visual img{object-position:center 48%}.hero-chip{bottom:12px;left:12px}.benefits{padding:11px 4px}.benefit{justify-content:flex-start;font-size:10px}.benefit-icon{width:28px;height:28px}.promo{padding:15px;align-items:flex-start}.promo-tag{font-size:27px}.promo-code{padding:8px}.promo-code b{font-size:10px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.product-info{padding:10px}.product h3{font-size:12px}.product-bottom{align-items:flex-start;flex-direction:column}.product-bottom .btn{width:100%}.category-grid{grid-template-columns:repeat(4,1fr);gap:7px}.category{padding:12px 4px}.category-icon{width:37px;height:37px}.about{grid-template-columns:1fr;padding:19px;gap:14px}.about-img{height:160px}.footer-main{flex-direction:column}.copyright{flex-direction:column}}
+
+/* Modern visual refresh */
+:root{--teal:#073f3b;--teal2:#0b554d;--orange:#c65325;--paper:#f7f8f5;--ink:#102b29;--muted:#64736e;--line:#e3e9e4;--white:#fff}
+body{font-family:'DM Sans',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:-.012em}
+header{box-shadow:0 5px 22px rgba(9,48,43,.045);backdrop-filter:blur(14px)}
+.nav{height:78px}
+.brand{font-family:'Manrope',sans-serif;font-weight:800;letter-spacing:-.035em}
+.brand-mark{box-shadow:0 5px 14px #bd51212b;transition:transform .3s}
+.brand:hover .brand-mark{transform:rotate(0) scale(1.08)}
+.navlinks a{position:relative;transition:color .2s}
+.navlinks a:after{content:"";position:absolute;left:0;right:100%;bottom:-8px;height:2px;background:var(--orange);transition:right .25s}
+.navlinks a:hover:after{right:0}
+.btn{border-radius:10px;padding:13px 18px;font-family:'Manrope',sans-serif;letter-spacing:.005em}
+.btn-dark{box-shadow:0 7px 16px #073f3b1b}
+.hero{padding-top:30px;padding-bottom:20px}
+.hero-panel{grid-template-columns:.88fr 1.12fr;min-height:440px;border-radius:24px;background:linear-gradient(135deg,#f3eee5 0%,#f7f0e4 55%,#e8e7d9 100%);box-shadow:0 22px 60px rgba(20,49,42,.09);isolation:isolate}
+.hero-copy{padding:54px 20px 52px 52px;animation:heroTextIn .75s cubic-bezier(.2,.75,.25,1) both}
+.eyebrow{font-size:10px;letter-spacing:.19em;gap:11px}
+.eyebrow:before{width:28px;border-radius:9px}
+h1{font-family:'Manrope',sans-serif;font-size:clamp(38px,4.2vw,60px);font-weight:800;line-height:1.02;letter-spacing:-.065em;margin:22px 0 19px;max-width:530px;color:#102b29}
+h1 span{color:var(--orange)}
+.hero-copy p{font-size:15px;line-height:1.8;max-width:410px;color:#586963;margin-bottom:27px}
+.hero-actions{gap:12px}
+.hero-visual{min-height:440px;background:#173c36}
+.hero-visual:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(7,63,59,.04),transparent 38%),linear-gradient(0deg,rgba(7,32,29,.16),transparent 45%)}
+.hero-visual img{object-fit:cover;object-position: right center;animation:heroImageDrift 20s ease-in-out infinite alternate;will-change:transform}
+.hero-chip{z-index:2;bottom:24px;left:24px;border:1px solid #ffffffaa;border-radius:14px;padding:14px 17px;backdrop-filter:blur(16px);background:rgba(255,253,246,.92);box-shadow:0 12px 35px #102b2926;font-size:12px}
+.hero-chip span{font-size:11px;line-height:1.5}
+.hero-sale{z-index:2;width:100px;height:100px;right:6%;top:8%;border:3px solid #fff8e9;box-shadow:0 12px 35px #1d100e38}
+.benefits{border-radius:16px;padding:17px 14px;box-shadow:0 8px 25px rgba(20,49,42,.035)}
+.benefit{font-size:12px;transition:transform .25s}
+.benefit:hover{transform:translateY(-3px)}
+.benefit-icon{background:#e6efe7;color:var(--teal)}
+.promo{border-radius:20px;box-shadow:0 14px 34px #073f3b12}
+.section-head h2,.promo strong,.about h2{font-family:'Manrope',sans-serif;letter-spacing:-.045em}
+.section-head h2{font-size:clamp(28px,3.2vw,38px);font-weight:800}
+.product{border-radius:16px;border-color:#e5eae5;box-shadow:0 3px 12px rgba(15,44,39,.025)}
+.product:hover{box-shadow:0 18px 38px rgba(15,44,39,.12)}
+.product h3{font-family:'Manrope',sans-serif;font-weight:800;letter-spacing:-.025em;font-size:14px}
+.filter,.category{border-radius:13px}
+.category{transition:transform .28s cubic-bezier(.2,.8,.2,1),box-shadow .28s,border-color .28s}
+.category:hover{transform:translateY(-5px);box-shadow:0 12px 26px #123e3212;border-color:#c7d8cd}
+.about{border-radius:22px}
+footer{background:linear-gradient(135deg,#062e2c,#0b4540)}
+@keyframes heroTextIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes heroImageDrift{from{transform:scale(1)}to{transform:scale(1.07)}}
+.product,.category,.benefits,.promo{animation:rise .65s both}
+@media(max-width:900px){.hero-panel{grid-template-columns:.9fr 1.1fr;min-height:390px}.hero-copy{padding:38px 16px 36px 30px}h1{font-size:clamp(34px,4.5vw,48px)}.hero-visual{min-height:390px}}
+@media(max-width:640px){.nav{height:auto}.hero-panel{grid-template-columns:1fr;border-radius:20px}.hero-copy{padding:32px 24px 27px}h1{font-size:clamp(36px,10vw,48px);line-height:1.04;margin:18px 0 14px}.hero-copy p{font-size:13px;line-height:1.7}.hero-visual{min-height:250px}.hero-visual img{object-position:right center}.hero-chip{left:12px;bottom:12px}.hero-sale{width:82px;height:82px;right:5%;top:7%}.hero-sale strong{font-size:27px}.benefits{border-radius:14px}}
+@media(prefers-reduced-motion:reduce){.hero-copy,.hero-visual img,.product,.category,.benefits,.promo{animation:none!important}}
+
 </style></head><body>
 <div class="announcement"><span>♧ &nbsp; Gratis ongkir untuk pembelian tertentu</span><span>◇ &nbsp; Katalog produk pilihan</span><span>◌ &nbsp; Foto produk diperbarui berkala</span></div>
 <header><div class="wrap nav">
@@ -89,8 +141,8 @@ dialog{border:0;border-radius:14px;padding:0;width:min(540px,calc(100% - 24px));
 </div></header>
 <main>
 <section class="hero wrap" id="beranda"><div class="hero-panel">
-<div class="hero-copy"><div class="eyebrow">Pilihan cerdas, hidup lebih baik</div><h1>Solusi Lengkap<br>Untuk Ruang Kerja<br>dan Rumah Anda</h1><p>Temukan perangkat monitoring, perlengkapan workspace, lampu dekoratif, dan produk kreatif pilihan dengan desain modern dan berkualitas.</p><div class="hero-actions"><a class="btn btn-dark" href="#produk">JELAJAHI PRODUK&nbsp; →</a><a class="btn btn-ghost" href="#kategori">Lihat kategori</a></div></div>
-<div class="hero-visual"><img src="/hero-monitoring-dekorasi.png" alt="Perangkat monitoring, lampu dekoratif, perlengkapan kerja, dan dekorasi rumah" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1000&q=80'"><div class="hero-chip">Koleksi pilihan<span>Temukan produk favorit Anda ↗</span></div><div class="hero-sale">DISKON PILIHAN<strong>50%</strong><small>Untuk koleksi tertentu</small></div></div>
+<div class="hero-copy"><div class="eyebrow">Pilihan cerdas, hidup lebih baik</div><h1>Teknologi Cerdas.<br><span>Ruang Lebih Nyaman.</span></h1><p>Jelajahi perangkat monitoring, lampu dekoratif, perlengkapan kerja, dan alat kreatif pilihan untuk rumah maupun workspace Anda.</p><div class="hero-actions"><a class="btn btn-dark" href="#produk">JELAJAHI PRODUK&nbsp; →</a><a class="btn btn-ghost" href="#kategori">Lihat kategori</a></div></div>
+<div class="hero-visual"><img src="/hero-monitoring-dekorasi.png" alt="Perangkat monitoring, lampu dekoratif, perlengkapan kerja, dan dekorasi rumah"><div class="hero-chip">Koleksi pilihan<span>Temukan produk favorit Anda ↗</span></div><div class="hero-sale">DISKON PILIHAN<strong>50%</strong><small>Untuk koleksi tertentu</small></div></div>
 </div>
 <div class="benefits"><div class="benefit"><span class="benefit-icon">▣</span><span>Foto Produk Jelas<small>Lihat detail produk</small></span></div><div class="benefit"><span class="benefit-icon">♡</span><span>Koleksi Pilihan<small>Kurasi dengan cermat</small></span></div><div class="benefit"><span class="benefit-icon">↻</span><span>Update Berkala<small>Produk terbaru</small></span></div><div class="benefit"><span class="benefit-icon">⌕</span><span>Mudah Dicari<small>Filter per kategori</small></span></div></div>
 <div class="promo"><div class="promo-tag">✦</div><div><small>Temukan sesuatu yang spesial</small><strong>Gaya pilihan. Setiap hari.</strong><p>Jelajahi produk terbaru di katalog kami.</p></div><a class="promo-code" href="#produk"><small>LIHAT KOLEKSI</small><b>JELAJAHI ↗</b></a></div>
