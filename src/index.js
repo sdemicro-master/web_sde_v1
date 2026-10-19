@@ -116,11 +116,14 @@ dialog{border:0;border-radius:14px;padding:0;width:min(540px,calc(100% - 24px));
 <script>
 const $=id=>document.getElementById(id);$("year").textContent=new Date().getFullYear();
 const dialog=$("adminDialog");let allProducts=[],activeCategory="Semua";
-$("openAdmin").onclick=()=>{dialog.showModal();checkSession()};$("footerAdmin").onclick=e=>{e.preventDefault();dialog.showModal();checkSession()};$("closeAdmin").onclick=()=>dialog.close();
+async function openAdminConsole(){try{await api("/api/logout",{method:"POST"})}catch{}showLogin();$("loginStatus").textContent="";$("pin").value="";dialog.showModal();$("pin").focus()}
+$("openAdmin").onclick=openAdminConsole;
+$("footerAdmin").onclick=e=>{e.preventDefault();openAdminConsole()};
+$("closeAdmin").onclick=async()=>{try{await api("/api/logout",{method:"POST"})}catch{}dialog.close()};
+dialog.addEventListener("close",()=>{api("/api/logout",{method:"POST"}).catch(()=>{})});
 async function api(url,opts={}){const r=await fetch(url,opts);let d={};try{d=await r.json()}catch{}if(!r.ok)throw Error(d.error||"Terjadi kesalahan");return d}
 function showLogin(){$("loginPanel").classList.remove("hidden");$("managePanel").classList.add("hidden");$("modalTitle").textContent="Konsol Admin"}
 function showManage(){$("loginPanel").classList.add("hidden");$("managePanel").classList.remove("hidden");$("modalTitle").textContent="Kelola Katalog";loadAdminList()}
-async function checkSession(){try{const d=await api("/api/session");d.authenticated?showManage():showLogin()}catch{showLogin()}}
 $("loginBtn").onclick=async()=>{$("loginStatus").textContent="Memeriksa PIN…";try{await api("/api/login",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({pin:$("pin").value})});$("pin").value="";$("loginStatus").textContent="";showManage()}catch(e){$("loginStatus").textContent=e.message}};
 $("pin").addEventListener("keydown",e=>{if(e.key==="Enter")$("loginBtn").click()});
 $("logoutBtn").onclick=async()=>{try{await api("/api/logout",{method:"POST"})}finally{showLogin();$("loginStatus").textContent="Anda sudah keluar."}};
