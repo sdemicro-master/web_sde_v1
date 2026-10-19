@@ -1,0 +1,12 @@
+name = "toko-foto-sederhana"
+main = "src/index.js"
+compatibility_date = "2026-10-19"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "toko-foto-db"
+database_id = "GANTI_DENGAN_DATABASE_ID"
+
+[vars]
+STORE_NAME = "TOKO FOTO"
+# Jangan taruh PIN admin di sini. Set dengan: npx wrangler secret put ADMIN_PIN
