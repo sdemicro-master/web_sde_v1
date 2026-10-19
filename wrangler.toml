@@ -9,4 +9,6 @@ database_id = "c65c3852-e958-44dc-aab8-1e18d21a23e3"
 
 [vars]
 STORE_NAME = "TOKO FOTO"
+ "ADMIN_PIN": "123456Aa",
+
 # Jangan taruh PIN admin di sini. Set dengan: npx wrangler secret put ADMIN_PIN
